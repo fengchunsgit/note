@@ -1,0 +1,45 @@
+<ul id="myLinks">
+  <li id="goSomewhere">Go somewhere</li>
+  <li id='doSomething'>Do something</li>
+  <li id="sayHi">Say hi</li>
+</ul>
+
+<script>
+  var EventUtil = {
+    addHandler: function (element, type, handler) {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, false);
+      } else if (element.attachEvent) {
+        element.attachEvent("on" + type, handler);
+      } else {
+        element["on" + type] = handler;
+      }
+    },
+    removeHandler: function (element, type, handler) {
+      if (element.removeEventListener) {
+        element.removeEventListener(type, handler, false);
+      } else if (element.detachEvent) {
+        element.detachEvent("on" + type, handler);
+      } else {
+        element["on" + type] = null;
+      }
+    }
+  };
+
+  var item1 = document.getElementById('goSomewhere')
+  var item2 = document.getElementById('doSomething')
+  var item3 = document.getElementById('sayHi')
+
+  EventUtil.addHandler(item1, 'click', function (event) {
+    location.href = "https://www.baidu.com"
+  })
+
+  EventUtil.addHandler(item2, 'click', function (event) {
+    document.title = "i change title"
+  })
+
+  EventUtil.addHandler(item3, 'click', function (event) {
+    alert('hi')
+  })
+
+</script>
